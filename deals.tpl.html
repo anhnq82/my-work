@@ -23,13 +23,13 @@
     <div class="col-sm-12 margintop60 accDetails-header">
         <legend>
             <span class="h3">Address</span>
-            <span class="btn btn-sm btn-link pull-right">Edit&nbsp;<i class="fa fa-pencil"></i></span>
+            <span class="btn btn-sm btn-link pull-right" ng-click="editInfo()">Edit&nbsp;<i class="fa fa-pencil"></i></span>
         </legend>
     </div>
 <!--Field value-->
     <div class="col-sm-12 form-horizontal margintop20">
         <div class="col-sm-3">
-            <p>Address 1</p>
+            <p>{{addOne}}</p>
             <p>Address 2</p>
             <p>Address 3</p>
             <p>City / Town</p>
@@ -37,7 +37,7 @@
             <p>Zip Code / Postal Code</p>
             <p>Country Name</p>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" id="testEdit">
             <p>Warner Music Group</p>
             <p>C/O Nicholas Cicale</p>
             <p>1633 Broadway</p>
