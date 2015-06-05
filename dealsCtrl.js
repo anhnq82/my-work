@@ -16,7 +16,7 @@
                 zipCode:"10019",
                 country:"United States"
             };
-            $scope.addressChange = $.extend(true,{},$scope.address);           
+            $scope.addressChange = $.extend(true,{},$scope.address);
             $scope.showAddressChangeForm =false;
             $scope.showSaveEditAlert = false;
             
@@ -32,12 +32,12 @@
                 $scope.showAddressChangeForm = false;
                 $scope.showAddressForm = true;
                 $scope.showSaveEditAlert = true;
-                $scope.address = $.extend(true,{},$scope.addressChange);
+                $scope.addressChange = $.extend(true,{},$scope.address);
             };
             $scope.cancelEdit = function () {
                 $scope.showAddressChangeForm = false;
                 $scope.showAddressForm = true;
-                $scope.addressChange = $.extend(true,{},$scope.address); 
+                $scope.addressChange = $.extend(true,{},$scope.address);
             };
             //Quang Anh
             $scope.dealDetail = new DealDetailModel();
