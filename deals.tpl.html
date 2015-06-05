@@ -26,10 +26,18 @@
             <span class="btn btn-sm btn-link pull-right" ng-click="editInfo()">Edit&nbsp;<i class="fa fa-pencil"></i></span>
         </legend>
     </div>
+    <div class="col-sm-12 margintop10 alert-edit">
+        <div class="alert alert-info-tint alert-dismissable" ng-show="showSaveEditAlert">
+          <button class="close" ng-click="showSaveEditAlert = false;"><span class="fa fa-times"></span></button>
+          <span class="fa fa-info-circle fa-lg"></span>
+          Updates to contact information may take up to 7-14 days to be updated by Warner/Chappell.
+        </div>
+        <div ugol-alert ugol-alert-instance="userSaveEdit"></div>
+    </div>
 <!--Field value-->
     <div class="col-sm-12 form-horizontal margintop20">
         <div class="col-sm-3">
-            <p>{{addOne}}</p>
+            <p>Address 1</p>
             <p>Address 2</p>
             <p>Address 3</p>
             <p>City / Town</p>
@@ -37,14 +45,34 @@
             <p>Zip Code / Postal Code</p>
             <p>Country Name</p>
         </div>
-        <div class="col-sm-4" id="testEdit">
-            <p>Warner Music Group</p>
-            <p>C/O Nicholas Cicale</p>
-            <p>1633 Broadway</p>
-            <p>New York</p>
-            <p>New York</p>
-            <p>10019</p>
-            <p>United States</p>
+        <div class="col-sm-4" ng-hide="showAddressChangeForm">
+            <p>{{address.add1}}</p>
+            <p>{{address.add2}}</p>
+            <p>{{address.add3}}</p>
+            <p>{{address.city}}</p>
+            <p>{{address.state}}</p>
+            <p>{{address.zipCode}}</p>
+            <p>{{address.country}}</p>
+        </div>
+        <div class="col-sm-4">
+            <form name="editAddressForm" ng-show="showAddressChangeForm" role="form">
+                <p><input type="text" class="form-control" ng-model="addressChange.add1" value="{{address.add1}}"></p>
+                <p><input type="text" class="form-control" ng-model="addressChange.add2" value="{{address.add2}}"></p>
+                <p><input type="text" class="form-control" ng-model="addressChange.add3" value="{{address.add3}}"></p>
+                <p><input type="text" class="form-control" ng-model="addressChange.city" value="{{address.city}}"></p>
+                <p><input type="text" class="form-control" ng-model="addressChange.state" value="{{address.state}}"></p>
+                <p><input type="text" class="form-control" ng-model="addressChange.zipCode" value="{{address.zipCode}}"></p>
+                <p><input type="text" class="form-control" ng-model="addressChange.country" value="{{address.country}}"></p>
+                <div class="row margintop20">
+                    <div class="col-md-3 reset-link">
+                        <a href="#" ng-click="resetForm()">Reset Form</a>  
+                    </div>
+                    <div class="col-md-9">
+                        <button class="btn btn-primary pull-right" ng-click="saveEdit()">Save</button>
+                        <button class="btn btn-default pull-right marginright10" ng-click="cancelEdit()">Cancel</button>
+                    </div>                  
+                </div>   
+            </form>
         </div>
     </div>
 <!--3rd header-->

@@ -6,11 +6,38 @@
     module.controller('dealsCtrl', ['$scope', '$rootScope', 'DealDetailModel', 'TerritoriesCollection',
         function ($scope, $rootScope, DealDetailModel, TerritoriesCollection) {
             //Quang Anh
-            $scope.addOne = "Address 1";
+            //QA-Init
+            $scope.address = {
+                add1:"Warner Music Group",
+                add2:"C/O Nicholas Cicale",
+                add3:"1633 Broadway",
+                city:"New York",
+                state:"New York",
+                zipCode:"10019",
+                country:"United States"
+            };
+            $scope.addressChange = $.extend(true,{},$scope.address);           
+            $scope.showAddressChangeForm =false;
+            $scope.showSaveEditAlert = false;
+            
+            //QA-Process
             $scope.editInfo = function () {
-                $('#testEdit p').replaceWith(function() {
-                    return '<p><input type="text" value="' + $scope.addOne + '"></p>';
-                });
+                $scope.editAddressForm.$setPristine();
+                $scope.showAddressChangeForm = true;    
+            };
+            $scope.resetForm = function () {
+                $scope.addressChange = {};    
+            };
+            $scope.saveEdit = function () {
+                $scope.showAddressChangeForm = false;
+                $scope.showAddressForm = true;
+                $scope.showSaveEditAlert = true;
+                $scope.address = $.extend(true,{},$scope.addressChange);
+            };
+            $scope.cancelEdit = function () {
+                $scope.showAddressChangeForm = false;
+                $scope.showAddressForm = true;
+                $scope.addressChange = $.extend(true,{},$scope.address); 
             };
             //Quang Anh
             $scope.dealDetail = new DealDetailModel();
