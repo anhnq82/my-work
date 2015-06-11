@@ -50,6 +50,9 @@
                     .append("g")
                     .attr("class", "arc")
                     .attr("transform", "translate(" + (outerRadius + border) + "," + (outerRadius + border) + ")");
+                
+                var arcOver = d3.svg.arc()
+                    .outerRadius(outerRadius + 10);
 
                 //Draw arc paths
                 arcs.append("path")
@@ -58,29 +61,38 @@
                     })
                     .attr("d", arc)
                     .on("click", function(d) {
-                        //alert(d.value);
-                        d3.select(this)
-                            .style("stroke", "white")
-                            .style("stroke-width", 3);
                     })
                     .style("stroke", "white")
-                    .style("stroke-width", 3);
-/*                    .on("mouseenter", function(d) {
-                        d3.select(this)
-                            .attr("stroke","white")
-                            .attr("stroke-width",4);
-                    })
-                    .on("mouseleave", function(d) {
-                        d3.select(this).transition()
-                            .attr("stroke",3);
-                    })*/
+                    .style("stroke-width", 3)
+                    .on("mouseover", function(d) {
+                        // Mouseover effect if no transition has started
+                        // Calculate angle bisector
+                            var ang = d.startAngle + (d.endAngle - d.startAngle)/2; 
+                            alert(ang);
+                        // Transformate to SVG space
+                            ang = (ang - (Math.PI / 2) ) * -1;
+                        // http://bl.ocks.org/marcbc/3281521
+                        // Calculate a 10% radius displacement
+                            var x = Math.cos(ang) * radius * 0.1;
+                            var y = Math.sin(ang) * radius * -0.1;
 
-                arcs.append("path")
+                            d3.select(this).transition()
+                                .duration(250).attr("transform", "translate("+x+","+y+")");
+                    })
+                    .on("mouseout", function(d) {
+                        // Mouseout effect if no transition has started                
+                        if(this._listenToEvents){
+                            d3.select(this).transition()
+                                .duration(150).attr("transform", "translate(0,0)"); 
+                        }
+                    });
+                
+                /*arcs.append("path")
                     .attr("fill", "#D6DCE3")
                     .attr("d", arcBorder)
                     .style("stroke", "white")
-                    .style("stroke-width", 3);
-
+                    .style("stroke-width", 3);*/
+                
                 //Labels
                 arcs.append("text")
                     .attr("transform", function (d) {
